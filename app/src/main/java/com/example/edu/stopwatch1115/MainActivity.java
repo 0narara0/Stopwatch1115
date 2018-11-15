@@ -53,13 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.buttonReset:
                 reset.setText("초기화");
-                updateTime = SystemClock.uptimeMillis()-SystemClock.uptimeMillis();
-                seconds = (int)(updateTime/1000);
-                minutes = seconds/60;
-                seconds = seconds % 60;
-                milliseconds = (int)(updateTime % 1000);
-                textViewTime.setText(minutes+":"+String.format("%02d",seconds)+":"+String.format("%03d",milliseconds));
-                startTime = updateTime;
+                handler.removeCallbacks(runnable);
+                startTime = 0;
+                timeBuff = 0;
+                textViewTime.setText("0:00:000");
                 break;
 
         }
